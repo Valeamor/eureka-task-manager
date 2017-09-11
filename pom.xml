@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>1.5.4.RELEASE</version>
+    <relativePath/> <!-- lookup parent from repository -->
+  </parent>
+
+  <groupId>com.guorenbao.taskmanager</groupId>
+  <artifactId>gop-taskmanager-parent</artifactId>
+  <packaging>pom</packaging>
+  <version>1.0.0</version>
+  <modules>
+    <module>gop-taskmanager-client</module>
+    <module>gop-taskmanager-server</module>
+  </modules>
+
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <java.version>1.8</java.version>
+    <spring-cloud.version>Dalston.SR2</spring-cloud.version>
+  </properties>
+
+  <repositories>
+    <repository>
+      <id>goopal-repo</id>
+      <url>http://nexus.goopal.pri/nexus/content/groups/goopal-repo/</url>
+    </repository>
+  </repositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>goopal-repo</id>
+      <url>http://nexus.goopal.pri/nexus/content/groups/goopal-repo/</url>
+    </pluginRepository>
+  </pluginRepositories>
+  <distributionManagement>
+    <repository>
+      <id>goopal-release</id>
+      <name>goopal-release</name>
+      <url>http://nexus.goopal.pri/nexus/content/repositories/goopal-release/</url>
+    </repository>
+    <snapshotRepository>
+      <id>goopal-snapshot</id>
+      <name>goopal-snapshot</name>
+      <url>http://nexus.goopal.pri/nexus/content/repositories/goopal-snapshot/</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>${spring-cloud.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-feign</artifactId>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
+          <encoding>UTF-8</encoding>
+        </configuration>
+        <version>3.3</version>
+      </plugin>
+    </plugins>
+  </build>
+</project>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+    "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+  <!-- 设置数据库连接参数文件实现动态加载 -->
+  <context id="context1" defaultModelType="flat">
+    <property name="javaFileEncoding" value="UTF-8"/>
+    <property name="mergeable" value="false"></property>
+    <property name="overwrite" value="true"></property>
+    <!-- 用来改名字 -->
+    <plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+      <property name="searchString" value="Example$"/>
+      <property name="replaceString" value="Criteria"/>
+    </plugin>
+    <!-- 这里引入扩展插件 -->
+    <plugin type="com.guorenbao.generator.plugin.SerializablePlugin"/>
+    <plugin type="com.guorenbao.generator.plugin.CreateCustomPartPlugin"/>
+    <commentGenerator>
+      <property name="suppressDate" value="false"/>
+      <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+      <property name="suppressAllComments" value="true"/>
+    </commentGenerator>
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                    connectionURL="jdbc:mysql://172.16.33.10:3306/gopserver?useUnicode=true&amp;characterEncoding=utf8&amp;mysqlEncoding=utf8"
+                    userId="gop_py" password="djwee12dd23!@"/>
+    <!-- 生成模型的包名和位置-->
+    <javaModelGenerator targetPackage="com.guorenbao.taskmanager.domain.entity"
+                        targetProject="gop-taskmanager-client/src/main/java">
+      <property name="enableSubPackages" value="false"/>
+      <property name="trimStrings" value="true"/>
+    </javaModelGenerator>
+    <!-- 生成映射文件的包名和位置-->
+    <sqlMapGenerator targetPackage="mybatis" targetProject="gop-taskmanager-server/src/main/resources">
+      <property name="enableSubPackages" value="false"/>
+    </sqlMapGenerator>
+    <!-- 生成DAO的包名和位置-->
+    <javaClientGenerator type="XMLMAPPER" targetPackage="com.guorenbao.taskmanager.dao"
+                         targetProject="gop-taskmanager-server/src/main/java">
+      <property name="enableSubPackages" value="false"/>
+    </javaClientGenerator>
+
+    <!--<table schema="" tableName="task_manager_list" domainObjectName="TaskManagerList">-->
+    <!--<columnOverride column="status" javaType="com.guorenbao.taskmanager.domain.enums.TaskManagerListStatus"-->
+    <!--typeHandler="org.apache.ibatis.type.EnumOrdinalTypeHandler"/>-->
+    <!--</table>-->
+    <table schema="" tableName="task_manager_log" domainObjectName="TaskManagerLog">
+      <columnOverride column="run_type" javaType="com.guorenbao.taskmanager.domain.enums.TaskManagerLogRunType"
+                      typeHandler="org.apache.ibatis.type.EnumOrdinalTypeHandler"/>
+      <columnOverride column="status" javaType="com.guorenbao.taskmanager.domain.enums.TaskManagerLogStatus"
+                      typeHandler="org.apache.ibatis.type.EnumOrdinalTypeHandler"/>
+    </table>
+  </context>
+</generatorConfiguration>
